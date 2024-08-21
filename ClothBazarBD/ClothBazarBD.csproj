@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\Content\**" />
+    <Content Remove="wwwroot\Content\**" />
+    <EmbeddedResource Remove="wwwroot\Content\**" />
+    <None Remove="wwwroot\Content\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="6.0.32" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.32" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.32">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.17" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ClothBazar.Entities\ClothBazar.Entities.csproj" />
+    <ProjectReference Include="..\ClothBazar.ServiceContracts\ClothBazar.ServiceContracts.csproj" />
+    <ProjectReference Include="..\ClothBazar.Services\ClothBazar.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\category\" />
+    <Folder Include="wwwroot\images\products\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\rev-slider\css\closedhand.123" />
+    <None Include="wwwroot\rev-slider\css\openhand.123" />
+    <None Include="wwwroot\rev-slider\fonts\revicons\revicons90c6.svg" />
+    <None Include="wwwroot\rev-slider\js\extensions\revolution.extension.actions.min.js" />
+    <None Include="wwwroot\rev-slider\js\extensions\revolution.extension.carousel.min.js" />
+    <None Include="wwwroot\rev-slider\js\extensions\revolution.extension.kenburn.min.js" />
+    <None Include="wwwroot\rev-slider\js\extensions\revolution.extension.layeranimation.min.js" />
+    <None Include="wwwroot\rev-slider\js\extensions\revolution.extension.migration.min.js" />
+    <None Include="wwwroot\rev-slider\js\extensions\revolution.extension.navigation.min.js" />
+    <None Include="wwwroot\rev-slider\js\extensions\revolution.extension.parallax.min.js" />
+    <None Include="wwwroot\rev-slider\js\extensions\revolution.extension.slideanims.min.js" />
+    <None Include="wwwroot\rev-slider\js\extensions\revolution.extension.video.min.js" />
+    <None Include="wwwroot\rev-slider\js\jquery.themepunch.revolution.min.js" />
+    <None Include="wwwroot\rev-slider\js\jquery.themepunch.tools.min.js" />
+  </ItemGroup>
+
+</Project>

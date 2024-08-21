@@ -1,0 +1,32 @@
+﻿
+
+<div class="w-75 container-fluid" style="margin-top:60px">
+    <table class="table table-striped">
+        <thead >
+            <tr>
+                <th class="font-weight-bold">#</th>
+                <th class="font-weight-bold">Product Name</th>
+                <th class="font-weight-bold">Price</th>
+                <th class="font-weight-bold">Category</th>           
+                <th class="font-weight-bold">Edit</th>
+                <th class="font-weight-bold">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (Product product in Model)
+            {
+                <tr>
+                    <th>@product.ID</th>
+                    <td>@product.Name</td>
+                    <td>@product.Price</td>
+                    <td>@product.Category?.Name</td>
+                    <td><a class="btn btn-primary text-white">Edit</a></td>
+                    <td><a class="btn btn-danger text-white">Delete</a></td>
+
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>

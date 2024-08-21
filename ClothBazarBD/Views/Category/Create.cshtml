@@ -1,0 +1,41 @@
+﻿@model ClothBazarBD.ViewModels.CategoryViewModel
+
+<form asp-controller="Category" asp-action="Create" method="post" enctype="multipart/form-data">
+	<div class="row">
+		<div class="col-md-8">
+			<div class="form-group">
+				<label>Name</label>
+				<input class="form-control" asp-for="Name" />
+			</div>
+			<div class="form-group">
+				<label>Description</label>
+				<input class="form-control" asp-for="Description" />
+			</div>
+			<div class="form-group">
+				<label>Image</label>
+				<input class="form-control" asp-for="photo" />
+			</div>
+			<div class="form-group">
+				<label>Is Featured?</label>
+				<div class="input-group">
+					<div class="radio form-control">
+						<label><input name="isFeatured" type="radio" value="true" id="isFeatured" /> True</label>
+					</div>
+					<div class="radio form-control">
+						<label><input name="isFeatured" type="radio" value="false" id="isFeatured" /> False</label>
+					</div>
+				</div>
+			</div>
+		</div>
+		@* <div class="col-md-4">
+			<div class="thumb">
+				<img class="img-thumbnail img-fluid" id="categoryImage" src="@imageURL" />
+			</div>
+		</div> *@
+	</div>
+	<div class="form-group">
+		<input type="submit" value="Submit" />
+	</div>
+
+	
+</form>

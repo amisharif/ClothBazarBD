@@ -1,0 +1,26 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "tailwindcss@2.2.19",
+      "destination": "wwwroot/lib/tailwindcss/"
+    },
+    {
+      "library": "jquery@3.7.1",
+      "destination": "wwwroot/lib/jquery/"
+    },
+    {
+      "library": "twitter-bootstrap@5.3.3",
+      "destination": "wwwroot/lib/twitter-bootstrap/"
+    },
+    {
+      "library": "jquery-cookie@1.4.1",
+      "destination": "wwwroot/lib/jquery-cookie/"
+    },
+    {
+      "library": "fontawesome-iconpicker@3.2.0",
+      "destination": "wwwroot/lib/fontawesome-iconpicker/"
+    }
+  ]
+}

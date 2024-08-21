@@ -1,0 +1,223 @@
+﻿@model ClothBazarBD.ViewModels.HomeViewModels
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+ 
+    <body>
+
+
+
+	<!--Category IMAGE BOX -->
+	<section class="flat-row row-image-box">
+		<div class="container">
+			<div class="row gutter-10">
+				<div class="col-sm-6 col-md-4">
+					<div class="flat-image-box style-1 data-effect div-h22 clearfix">
+						<div class="item data-effect-item">
+							<div class="inner">
+								<div class="thumb">
+									<img src="~/images/image-box/imgbox-1-375x500.jpg" alt="Image">
+									<div class="elm-btn">
+										<a href="#" class="themesflat-button bg-white width-150">For Men’s</a>
+									</div>
+									<div class="overlay-effect bg-color-1"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div><!-- /.col-md-4 -->
+				<div class="col-sm-6 col-md-4">
+					<div class="flat-image-box style-1 row2 data-effect clearfix">
+						<div class="item data-effect-item">
+							<div class="inner">
+								<div class="thumb">
+									<img src="~/images/image-box/imgbox-1-375x240.jpg" alt="Image">
+									<div class="elm-btn">
+										<a href="#" class="themesflat-button bg-white width-150">For Kid’s</a>
+									</div>
+									<div class="overlay-effect bg-color-1"></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="item data-effect-item">
+							<div class="inner">
+								<div class="thumb">
+									<img src="~/images/image-box/imgbox-2-375x240.jpg" alt="Image">
+									<div class="elm-btn">
+										<a href="#" class="themesflat-button bg-white width-150">accessories</a>
+									</div>
+									<div class="overlay-effect bg-color-1"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div><!-- /.col-md-4 -->
+				<div class="col-sm-6 col-md-4">
+					<div class="flat-image-box style-1 data-effect div-h20 clearfix">
+						<div class="item data-effect-item">
+							<div class="inner">
+								<div class="thumb">
+									<img src="~/images/image-box/imgbox-2-375x500.jpg" alt="Image">
+									<div class="elm-btn">
+										<a href="#" class="themesflat-button bg-white width-150">For woMen’s</a>
+									</div>
+									<div class="overlay-effect bg-color-1"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div><!-- /.col-md-4 -->
+			</div><!-- /.row -->
+		</div><!-- /.container -->
+	</section>
+	<!-- END IMAGE BOX -->
+
+
+@* 
+	<!-- IMAGE BOX -->
+
+	<div class="w-75 mx-auto">
+		<div class="row" style="margin-top:100px">
+
+			@foreach (Category category in Model.Categories)
+			{
+				<div class="col-4 mt-4">
+					<img src="~/images/category/@category.ImageURL" class="card-img-category w-100">
+					<div class="text-center">
+						<a href="#" class="btn btn-primary" style="margin-top:-38%">@category.Name</a>
+					</div>
+				</div>
+
+			}
+		</div><!-- /.row -->
+	</div>
+ *@
+
+
+	<!--NEW PRODUCT  -->
+	<section class="flat-row row-product-project style-1">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="title-section margin-bottom-41">
+						<h2 class="title">New Products</h2>
+					</div>
+					<div class="divider h54"></div>
+	
+					 @await Html.PartialAsync("_ProductGrid", Model.Products) 
+					
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<!-- ANIMATION BOX -->
+	<section class="flat-row row-animation-box bg-section row-1">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="flat-animation-block">
+						<div class="title-section width-before-17 bg-before-white margin-bottom-14">
+							<div class="sup-title"><span>NEW TREND 2018</span></div>
+							<h2 class="title font-size-52 line-height-76">Women‘s Collection</h2>
+							<div class="sub-title"><span>Big Sale of this Week</span></div>
+						</div>
+						<div class="elm-btn text-center">
+							<a href="#" class="themesflat-button bg-accent has-padding-36">Shop Now</a>
+						</div>
+					</div><!-- /.flat-animation-block -->
+				</div>
+			</div><!-- /.row -->
+		</div><!-- /.container -->
+	</section>
+	<!-- END ANIMATION BOX -->
+
+
+
+	<!--Categroy PRODUCT -->
+	<section class="flat-row row-product-project style-1">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="title-section margin-bottom-41">
+						<h2 class="title">Best Sale</h2>
+					</div>
+					<ul class="flat-filter style-1 text-center max-width-682">
+						<li class="active categoryBtn cursor-pointer" data-filter="0"><a data-filter="0" href="">All Products</a></li>
+
+						@foreach(Category category1 in Model.Categories.Take(4))
+						{
+							<li class="categoryBtn cursor-pointer" data-filter="@category1.ID"><a data-filter="0" href="">@category1.Name</a></li>
+						}
+
+					</ul>
+					<div class="divider h54"></div>
+					<div id="productsByCategory">
+						
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- END PRODUCT -->
+
+
+
+
+
+
+
+
+	<script>
+		var products = [];
+
+		$(document).ready(function () {
+
+			$(".addtoCart").click(function () {
+				var productID = $(this).attr('data-filter');
+				products.push(productID);
+				console.log(products);
+				$.cookie('CartProducts', products.join('-'), { path: '/' });
+
+			});
+
+			//Initila category products
+			$.ajax({
+				type: 'GET',
+				url: '/home/CategoryProduct',
+				data: { ID: 0 },
+				success: function (response) {
+					$("#productsByCategory").html(response);
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					console.error('Error:', textStatus, errorThrown);
+				}
+			});
+
+			$(".categoryBtn").click(function () {
+
+				var id = $(this).attr('data-filter');
+				console.log(id);
+				$.ajax({
+					type: 'GET',
+					url: '/home/CategoryProduct',
+					data: {ID:id},
+					success: function (response) {
+						$("#productsByCategory").html(response);
+					},
+					error: function (jqXHR, textStatus, errorThrown) {
+						console.error('Error:', textStatus, errorThrown);
+					}
+				});
+			})
+			
+
+		});
+	</script>
+
+
+
+    </body>
+</html>

@@ -1,0 +1,44 @@
+﻿@model ClothBazarBD.ViewModels.ProductViewModel
+
+@{
+    ViewBag.Title = "Product-Create";
+}
+
+
+<div style="margin-top:40px">
+	
+	<form class="w-50 mx-auto" asp-controller="Product" asp-action="Create" method="post" enctype="multipart/form-data">
+		<a  asp-controller="Product" asp-action="Index">Go to product page</a>
+		<div class="form-group mt-2">
+			<label asp-for="Name">Product Name</label>
+			<input class="form-control" asp-for="Name" />
+		</div>
+		<div class="form-group mt-2">
+			<label asp-for="CategoryID">Category</label>
+			<select asp-for="CategoryID" asp-items="@ViewBag.Products" class="form-control">
+				<option value="">Please Select</option>
+			</select>
+		</div>
+
+		<div class="form-group mt-2">
+			<label asp-for="Description">Description</label>
+			<input class="form-control" asp-for="Description" />
+		</div>
+		<div class="form-group">
+			<label asp-for="Photo">Image</label>
+			<input class="form-control" asp-for="Photo" />
+		</div>
+		<div class="form-group mt-2">
+			<label asp-for="Price">Price</label>
+			<input class="form-control" asp-for="Price" />
+		</div>
+		<div class="form-group mt-2">
+			<input type="submit" class="btn btn-primary" value="Add Product" />
+		</div>
+
+	</form>
+
+</div>
+
+
+

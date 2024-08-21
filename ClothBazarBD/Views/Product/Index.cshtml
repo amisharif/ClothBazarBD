@@ -1,0 +1,102 @@
+﻿@{
+    ViewBag.Title = "Product-Index";
+}
+@model IEnumerable<Product>
+@using ClothBazar.ServiceContracts.Enums
+
+
+
+
+
+@* <form asp-controller="Product" asp-action="Index" method="post" enctype="multipart/form-data"> *@
+
+
+@*  	<div class="container w-75 mt-6">
+		<div class="row justify-content-center">
+            <div class="col-3">
+                <select class="form-select" name="searchBy">
+                    @foreach (var field in ViewBag.SearchFields)
+                    {
+                        if (field.Key == ViewBag.CurrentSearchBy)
+                        {
+                            <option value="@field.Key" selected="selected">@field.Value</option>
+                        }
+                        else
+                        {
+                            <option value="@field.Key">@field.Value</option>
+                        }
+
+                    } *@
+                    @* Eg: searchBy=PersonName&searchString=abc *@
+@*                 </select>
+            </div>
+			<div class="col-5 form-group">
+                <input type="text" name="searchString" placeholder="@ViewBag.CurrentSearchString" class="form-control">
+			</div>
+			<div class="col-2 justify-content-center">
+				<button type="submit" class="btn btn-primary w-100">Search</button>
+			</div>
+            <div class="col-2 justify-content-center">
+                <a asp-controller="Product" asp-action="Create" class="btn btn-primary w-100">New</a>
+            </div>
+		</div>
+	</div> 
+ *@
+
+
+   @*  @await Html.PartialAsync("_ProductTable", Model); *@
+
+
+    <div class="w-75 container-fluid" style="margin-top:40px">
+   
+        <table id="myTable" class="table table-striped mt-2">
+            <thead>
+                <tr>
+
+                    <th class="font-weight-bold">#</th>
+
+@* 
+                    @await Html.PartialAsync("_GridColumnHeader", new ViewDataDictionary(ViewData) {
+                    { "DisplayName", "Product Name" },{"ColumnName","Name"}
+                    })
+                    @await Html.PartialAsync("_GridColumnHeader", new ViewDataDictionary(ViewData) {
+                    { "DisplayName", "Price" },{"ColumnName","Price"}
+                    })
+                    @await Html.PartialAsync("_GridColumnHeader", new ViewDataDictionary(ViewData) {
+                    { "DisplayName", "Category" },{"ColumnName","Category"}
+                    }) *@
+
+                    <th>Prodct Name</th>
+                    <th>Prodct Price</th>
+                    <th>Category</th>
+                    <th class="font-weight-bold">Edit</th>
+                    <th class="font-weight-bold">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (Product product in Model)
+                {
+                    <tr>
+                        <th>@product.ID</th>
+                        <td>@product.Name</td>
+                        <td>@product.Price</td>
+                        <td>@product.Category?.Name</td>
+                        <td><a class="btn btn-primary text-white">Edit</a></td>
+                        <td><a class="btn btn-danger text-white">Delete</a></td>
+
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+
+
+@* </form> *@
+
+<script>
+
+    $('#myTable').DataTable();
+   
+</script>
