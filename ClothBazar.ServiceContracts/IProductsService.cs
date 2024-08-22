@@ -17,7 +17,7 @@ namespace ClothBazar.ServiceContracts
 		List<Product> GetFilteredProducts(string? searchBy, string? searchString);
 		List<Product> GetSortedProducts(List<Product> products,string? sortBy,SortOrderOptions sortOrder);
 		List<Product> GetProductsByID(List<int> IDs);
-
 		List<Product> GetProductsByCategoryId(int ID);
+		List<Product> GetFilterProductsByPrice(decimal min,decimal max);
 	}
 }

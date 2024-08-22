@@ -25,7 +25,6 @@ namespace ClothBazarBD.Controllers
             var CartProductsCookie = Request.Cookies["CartProducts"];
 
 
-
 			if (CartProductsCookie != null)
 			{
 				var productIDs = CartProductsCookie;
@@ -41,6 +40,22 @@ namespace ClothBazarBD.Controllers
 		}
 
 
-	
-	}
+        [Route("[action]")]
+        public IActionResult FilterProducts(int minimumPrice,int maximumPrice)
+		{
+
+			List<Product> allProduct = _productService.GetAllProducts();
+			List<Product>  products = _productService.GetFilterProductsByPrice(minimumPrice, maximumPrice);	
+
+			if(minimumPrice==0 && maximumPrice == 0)
+			{
+				return PartialView(allProduct);
+			}
+			return PartialView(products);
+		}
+
+
+
+
+    }
 }

@@ -35,6 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\images\shop\.DS_Store" />
     <None Include="wwwroot\rev-slider\css\closedhand.123" />
     <None Include="wwwroot\rev-slider\css\openhand.123" />
     <None Include="wwwroot\rev-slider\fonts\revicons\revicons90c6.svg" />

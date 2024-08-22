@@ -59,7 +59,12 @@ namespace ClothBazar.Services
  
         }
 
-		public List<Product> GetProductsByCategoryId(int ID)
+        public List<Product> GetFilterProductsByPrice(decimal min, decimal max)
+        {
+            return _db.Products.Where(x=> x.Price>=min && x.Price<=max ).ToList();
+        }
+
+        public List<Product> GetProductsByCategoryId(int ID)
 		{
 			return _db.Products.Where(x => x.CategoryID == ID).ToList();
 		}
