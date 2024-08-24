@@ -59,9 +59,9 @@ namespace ClothBazar.Services
  
         }
 
-        public List<Product> GetFilterProductsByPrice(decimal min, decimal max)
+        public List<Product> GetFilterProductsByPrice(decimal min, decimal max, List<Product> products)
         {
-            return _db.Products.Where(x=> x.Price>=min && x.Price<=max ).ToList();
+            return products.Where(x=> x.Price>=min && x.Price<=max ).ToList();
         }
 
         public List<Product> GetProductsByCategoryId(int ID)
@@ -72,6 +72,12 @@ namespace ClothBazar.Services
 		public List<Product> GetProductsByID(List<int> IDs)
         {
             return _db.Products.Where(x=>IDs.Contains(x.ID)).ToList();  
+        }
+
+        public List<Product> GetProductsByPageNo(int pageNo, int numOfProd )
+        {
+            List<Product> filterProducts = _db.Products.Skip((pageNo-1)*numOfProd).Take(numOfProd).ToList();
+            return filterProducts;  
         }
 
         public List<Product> GetSortedProducts(List<Product> products, string? sortBy, SortOrderOptions sortOrder)

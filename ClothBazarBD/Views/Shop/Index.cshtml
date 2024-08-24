@@ -103,15 +103,21 @@
 
                         <div id="productsDiv"></div>
 
+
                         <div class="product-pagination text-center clearfix">
                             <ul class="flat-pagination">
-                                <li class="prev">
+                                @for (int i = 0; i < ViewBag.totalPage; i++)
+                                {
+                                    <li><button class="pageNo">@(i+1)</button></li>
+                                }
+                            
+                              @*   <li class="prev">
                                     <a href="#"><i class="fa fa-angle-left"></i></a>
                                 </li>
                                 <li><a href="#">1</a></li>
                                 <li class="active"><a href="#" title="">2</a></li>
                                 <li><a href="#">3</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                                <li><a href="#"><i class="fa fa-angle-right"></i></a></li> *@
                             </ul><!-- /.flat-pagination -->
                         </div>
                     </div><!-- /.col-md-9 -->
@@ -219,21 +225,47 @@
 
     </div>
 
+    <div class="hello">Hello</div>
 
 
     <script>
+    
+        var pageNo;
+        var minimumPrice = @ViewBag.mn;
+        var maximumPrice = @ViewBag.mx;
+        
+        $(".pageNo").click(function () {
+
+            pageNo = $(this).text();
+            $.ajax({
+                url: '@Url.Action("FilterProducts", "Shop")',
+                data: {
+                    minimumPrice,
+                    maximumPrice,
+                    pageNo
+                }
+            }).done(function (response) {
+                $("#productsDiv").html(response);
+
+            })
+                .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("FAIL");
+                });
+            
+        });
 
 
 
         $.ajax({
             url: '@Url.Action("FilterProducts", "Shop")',
             data: {
-                minimumPrice: 0,
-                maximumPrice: 50000
+                minimumPrice: @ViewBag.mn,
+                maximumPrice: @ViewBag.mx,
+                pageNo
             }
         })
             .done(function (response) {
-                $("#productsDiv").html(response);
+                $("#productsDiv").html(response)
 
             })
             .fail(function (XMLHttpRequest, textStatus, errorThrown) {
@@ -244,18 +276,21 @@
         var callTimeout;
         var priceSlider = $("#slide-range").slider({
             range: true,
-            min: 0,
-            max: 25000,
-            values: [0, 25000],
+            min: @ViewBag.mn,
+            max: @ViewBag.mx,
+            values: [@ViewBag.mn, @ViewBag.mx],
             slide: function (event, ui) {
                 var minPrice = ui.values[0];
                 var maxPrice = ui.values[1];
-                console.log(minPrice, maxPrice);
+
+                minimumPrice = minPrice;
+                maximumPrice = maxPrice;
+                
 
                 $("#amount").val("$" + minPrice + ".00" + " - " + "$" + maxPrice + ".00");
 
                 clearTimeout(callTimeout);
-                callTimeout = setTimeout(GetData, 500);
+                callTimeout = setTimeout(GetData, 2000);
             }
         });
 
@@ -268,7 +303,8 @@
                 url: '@Url.Action("FilterProducts", "Shop")',
                 data: {
                     minimumPrice: priceSlider.slider("values", 0),
-                    maximumPrice: priceSlider.slider("values", 1)
+                    maximumPrice: priceSlider.slider("values", 1),
+                    pageNo
                 }
             })
                 .done(function (response) {

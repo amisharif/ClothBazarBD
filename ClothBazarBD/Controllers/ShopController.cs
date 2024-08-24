@@ -24,8 +24,20 @@ namespace ClothBazarBD.Controllers
             CheckoutViewModels checkoutViewModels = new CheckoutViewModels();
             var CartProductsCookie = Request.Cookies["CartProducts"];
 
+            List<Product> allProduct = _productService.GetAllProducts();
 
-			if (CartProductsCookie != null)
+            int totalProducts = allProduct.Count();
+            var numberOfPage = (int)Math.Ceiling(totalProducts / 9.0);
+            ViewData["totalPage"] = numberOfPage;
+
+            var mx = allProduct.Max(x => x.Price);
+            var mn = allProduct.Min(x => x.Price);
+
+			ViewBag.mx = mx;
+			ViewBag.mn = mn;
+
+
+            if (CartProductsCookie != null)
 			{
 				var productIDs = CartProductsCookie;
 				var ids = productIDs.Split('-');
@@ -40,18 +52,24 @@ namespace ClothBazarBD.Controllers
 		}
 
 
+
         [Route("[action]")]
-        public IActionResult FilterProducts(int minimumPrice,int maximumPrice)
+        public IActionResult FilterProducts(int minimumPrice,int maximumPrice,int pageNo=1)
 		{
 
-			List<Product> allProduct = _productService.GetAllProducts();
-			List<Product>  products = _productService.GetFilterProductsByPrice(minimumPrice, maximumPrice);	
+			List<Product>allProduct = _productService.GetAllProducts();
+            List<Product> productByPage = _productService.GetProductsByPageNo(pageNo, 9).ToList();
+            List<Product>  filterProducts = _productService.GetFilterProductsByPrice(minimumPrice, maximumPrice, productByPage).ToList();
+           
 
-			if(minimumPrice==0 && maximumPrice == 0)
-			{
-				return PartialView(allProduct);
-			}
-			return PartialView(products);
+
+            return PartialView(filterProducts);
+
+   //         if (minimumPrice==0 && maximumPrice == 0)
+			//{
+			//	return PartialView(productByPage);
+			//}
+	
 		}
 
 
