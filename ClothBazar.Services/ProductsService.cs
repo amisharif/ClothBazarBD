@@ -74,9 +74,9 @@ namespace ClothBazar.Services
             return _db.Products.Where(x=>IDs.Contains(x.ID)).ToList();  
         }
 
-        public List<Product> GetProductsByPageNo(int pageNo, int numOfProd )
+        public List<Product> GetProductsByPageNo(List<Product> sortedProducts,int pageNo, int numOfProd )
         {
-            List<Product> filterProducts = _db.Products.Skip((pageNo-1)*numOfProd).Take(numOfProd).ToList();
+            List<Product> filterProducts = sortedProducts.Skip((pageNo-1)*numOfProd).Take(numOfProd).ToList();
             return filterProducts;  
         }
 
@@ -102,6 +102,11 @@ namespace ClothBazar.Services
             return sortedProducts;
         }
 
-        
+        public List<Product> GetSortedProductsByOrder(List<Product> products, SortOrderOptions order)
+        {
+            if(order==SortOrderOptions.ASC)return _db.Products.OrderBy(prod=>prod.Price).ToList();
+            else if(order==SortOrderOptions.DESC) return _db.Products.OrderByDescending(prod => prod.Price).ToList();
+            return _db.Products.ToList();
+        }
     }
 }

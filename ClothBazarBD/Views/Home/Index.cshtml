@@ -175,13 +175,13 @@
 
 		$(document).ready(function () {
 
-			$(".addtoCart").click(function () {
-				var productID = $(this).attr('data-filter');
-				products.push(productID);
-				console.log(products);
-				$.cookie('CartProducts', products.join('-'), { path: '/' });
+			// $(".addtoCart").click(function () {
+			// 	var productID = $(this).attr('data-filter');
+			// 	products.push(productID);
+			// 	console.log(products);
+			// 	$.cookie('CartProducts', products.join('-'), { path: '/' });
 
-			});
+			// });
 
 			//Initila category products
 			$.ajax({

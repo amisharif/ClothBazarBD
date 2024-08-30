@@ -19,7 +19,7 @@
                         </ins>
                     </div>
                 </div>
-                <div class="add-to-cart text-center">
+                <div class="add-to-cart text-center" item-id="@product.ID">
                     <a href="#">ADD TO CART</a>
                 </div>
                 <a href="#" class="like"><i class="fa fa-heart-o"></i></a>
@@ -28,5 +28,30 @@
     </ul>
 </div>
 
+<script>
 
+    var cartProducts = [];
+
+    $(".add-to-cart").click(function (event) {
+
+        event.preventDefault();
+
+     
+        if ($.cookie('cartProducts') != null) {
+            cartProducts = $.cookie('cartProducts').split(",");
+        }
+       
+        
+        var productID = $(this).attr("item-id");
+
+        cartProducts.push(productID);
+        $.cookie('cartProducts', cartProducts, { path: '/' });
+
+        updateCartProducts();
+        console.log($.cookie('cartProducts'));
+
+
+    });
+
+</script>
 

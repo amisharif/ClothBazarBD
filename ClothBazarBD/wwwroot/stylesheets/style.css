@@ -1,4 +1,5 @@
 
+
 @import url("font-awesome.css");
 @import url("shortcodes.css");
 @import url("jquery-ui.css");
@@ -6,7 +7,7 @@
 @import url("owl.carousel.css");
 @import url("woocommerce.css");
 @import url("magnific-popup.css");
-@import url("https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,500,600,700|");
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,500,600,700");
 
 /**
   *	Reset
@@ -2591,24 +2592,24 @@ article .more-link a:hover:after {
 }
 
 .parallax1 {
-	background-image: url('~/images/parallax/bg-parallax1.jpg');
+	background-image: url('../images/parallax/bg-parallax1.jpg');
 }
 
 .parallax2 {
-	background-image: url('~/images/parallax/bg-parallax2.jpg');
+	background-image: url('../images/parallax/bg-parallax2.jpg');
 }
 
 .parallax4 {
-	background-image: url('~/images/parallax/bg-parallax4.jpg');
+	background-image: url('../images/parallax/bg-parallax4.jpg');
 } 
 
 .bg-section.row-1 {
-	background: url('~/images/parallax/bg-parallax3.jpg') no-repeat center center ;
+	background: url('../images/parallax/bg-parallax3.jpg') no-repeat center center ;
 	background-size: cover;
 }
 
 .bg-section.row-2 {
-	background: url('~/images/parallax/bg-parallax4.jpg') no-repeat center center ;
+	background: url('../images/parallax/bg-parallax4.jpg') no-repeat center center ;
 	background-size: cover;
 }
 

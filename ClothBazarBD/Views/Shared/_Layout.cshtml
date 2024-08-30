@@ -22,15 +22,18 @@
     <!-- Colors -->
     <link rel="stylesheet" type="text/css" href="~/stylesheets/colors/color1.css" id="colors">
 
-    <script src="~/lib/jquery/jquery.min.js"></script>
-    <script src="~/javascript/jquery-ui.js"></script>
-    <script src="~/lib/jquery-cookie/jquery.cookie.min.js"></script>
+
     <!-- Animation Style -->
     <link rel="stylesheet" type="text/css" href="~/stylesheets/animate.css">
 
 
     <!-- Favicon and touch icons  -->
     <link href="~/icon/favicon.png" rel="shortcut icon">
+
+    <script src="~/javascript/jquery.min.js"></script>
+    <script src="~/javascript/jquery-ui.js"></script>
+    <script src="~/lib/jquery-cookie/jquery.cookie.min.js"></script>
+
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -49,7 +52,7 @@
                 <div class="container-fluid clearfix container-width-93" id="site-header-inner">
                     <div id="logo" class="logo float-left">
                         <a href="index.html" title="logo">
-                            <img src="~/images/logo.png" alt="image" width="107" height="24" data-retina="~/images/logo@2x.png" data-width="107" data-height="24">
+                            <img src="~/images/logo.png" alt="image" width="107" height="24" data-width="107" data-height="24">
                         </a>
                     </div><!-- /.logo -->
                     <div class="mobile-button"><span></span></div>
@@ -65,7 +68,7 @@
                             <a class="icon_login" href="#"></a>
                         </li>
                         <li class="box-cart nav-top-cart-wrapper">
-                            <a class="icon_cart nav-cart-trigger active" href="#"><span>3</span></a>
+                            <a class="icon_cart nav-cart-trigger active" href="#"><span id="cart-count">0</span></a>
                             <div class="nav-shop-cart">
                                 <div class="widget_shopping_cart_content">
                                     <div class="woocommerce-min-cart-wrap">
@@ -83,11 +86,11 @@
                         <nav id="mainnav" class="mainnav">
                             <ul class="menu">
                                 <li>
-                                    <a href="index.html">HOME</a>
+                                    <a asp-controller="Home" asp-action="Index">HOME</a>
                                    
                                 </li>
                                 <li>
-                                    <a href="shop-3col.html">SHOP</a>
+                                    <a asp-controller="Shop" asp-action="Index">SHOP</a>
                                    
                                 </li>
                                 <li  class="active" >
@@ -150,9 +153,9 @@
 					<div class="col-md-3">
 						<div class="widget widget-brand">
 							<div class="logo logo-footer">
-								<a href="index.html"><img src="images/logo@2x.png" alt="image" width="107" height="24"></a>
+                               @*  <a asp-controller="Home" asp-action="Index"><img src ="~/images/logo@2x.png" *@ alt="image" width="107" height="24"></a>
 							</div>
-
+                            
                             <ul class="flat-contact">
 								<li class="address">112 Kingdom, NA 12, New York</li>
 								<li class="phone">+12 345 678 910</li>
@@ -182,7 +185,12 @@
     </div>
 
 	<!-- Javascript -->
-    <script src="~/javascript/jquery.min.js"></script>
+
+
+
+   
+
+   
     <script src="~/javascript/tether.min.js"></script>
     <script src="~/javascript/bootstrap.min.js"></script> 
     <script src="~/javascript/jquery.easing.js"></script>    

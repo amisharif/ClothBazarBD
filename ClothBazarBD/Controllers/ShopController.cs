@@ -1,5 +1,6 @@
 ﻿using ClothBazar.Entities;
 using ClothBazar.ServiceContracts;
+using ClothBazar.ServiceContracts.Enums;
 using ClothBazar.Services;
 using ClothBazarBD.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -36,17 +37,19 @@ namespace ClothBazarBD.Controllers
 			ViewBag.mx = mx;
 			ViewBag.mn = mn;
 
+			var cartProducts = Request.Cookies["cartProducts"];
 
-            if (CartProductsCookie != null)
+
+			if (CartProductsCookie != null)
 			{
 				var productIDs = CartProductsCookie;
-				var ids = productIDs.Split('-');
+				var ids = productIDs.Split(',');
 				List<int> pIDs = ids.Select(x => int.Parse(x)).ToList();
 
 				checkoutViewModels.CartProducts = _productService.GetProductsByID(pIDs);
-				
 				checkoutViewModels.CartProductIDs = pIDs;
 			}
+
 
 			return View();
 		}
@@ -54,21 +57,24 @@ namespace ClothBazarBD.Controllers
 
 
         [Route("[action]")]
-        public IActionResult FilterProducts(int minimumPrice,int maximumPrice,int pageNo=1)
+        public IActionResult FilterProducts(int minimumPrice, int maximumPrice, int pageNo = 1, SortOrderOptions sortOrder=SortOrderOptions.Default)
 		{
 
+
+
 			List<Product>allProduct = _productService.GetAllProducts();
-            List<Product> productByPage = _productService.GetProductsByPageNo(pageNo, 9).ToList();
+
+			List<Product> sortedProduct = _productService.GetSortedProductsByOrder(allProduct,sortOrder);
+
+
+            List<Product> productByPage = _productService.GetProductsByPageNo(sortedProduct,pageNo, 9).ToList();
             List<Product>  filterProducts = _productService.GetFilterProductsByPrice(minimumPrice, maximumPrice, productByPage).ToList();
-           
 
 
+
+			ViewBag.pageNo = pageNo;
             return PartialView(filterProducts);
 
-   //         if (minimumPrice==0 && maximumPrice == 0)
-			//{
-			//	return PartialView(productByPage);
-			//}
 	
 		}
 

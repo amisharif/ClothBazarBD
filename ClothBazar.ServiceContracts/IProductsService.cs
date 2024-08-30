@@ -16,9 +16,10 @@ namespace ClothBazar.ServiceContracts
 		List<Product> GetAllProducts();
 		List<Product> GetFilteredProducts(string? searchBy, string? searchString);
 		List<Product> GetSortedProducts(List<Product> products,string? sortBy,SortOrderOptions sortOrder);
+		List<Product> GetSortedProductsByOrder(List<Product> products,SortOrderOptions order);
 		List<Product> GetProductsByID(List<int> IDs);
 		List<Product> GetProductsByCategoryId(int ID);
 		List<Product> GetFilterProductsByPrice(decimal min,decimal max,List<Product>products);
-		List<Product> GetProductsByPageNo(int pageNo,int numOfProd);
+		List<Product> GetProductsByPageNo(List<Product>sortedProducts,int pageNo,int numOfProd);
 	}
 }

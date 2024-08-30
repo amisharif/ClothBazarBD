@@ -27,7 +27,7 @@
   * swClick
 */
 
-;(function($) {
+(function($) {
 
    'use strict'
 
@@ -804,34 +804,61 @@
         activeLayout(); 
         activePattern();
     }; 
+
+
+
+
+    //function updateCartProducts() {
+
+    //    var total = $.cookie('cartProducts').split(',').length;
+    //    var data = total;
+    //    $(".cart-count").html(data);
+
+    //}
     
    	// Dom Ready
-	$(function() {
-      removePreloader();
-      goTop();
-      parallax(); 
-      flatRetinaLogo();
-      searchIcon();
-      headerFixed();
-      responsiveMenu();
-      swClick();
-      flatEqualHeight();
-      flatAccordion();
-      countDown();
-      flatCounter();
-      googleMap();
-     /* flatPrice();*/  
-      flatFilterBox(); 
-      flatShopSearch();
-      topSearch();
-      flexProduct(); 
-      quantityNumber(); 
-      flatTabs();
-      flatImagePopup();
-      flatVideoPopup(); 
-      flatEffectDir();
-      flatIsotope();
-      flatCarouselOwl();
-      flatContentBox();
+    $(function () {
+        removePreloader();
+        goTop();
+        parallax(); 
+        flatRetinaLogo();
+        searchIcon();
+        headerFixed();
+        responsiveMenu();
+        swClick();
+        flatEqualHeight();
+        flatAccordion();
+        countDown();
+        flatCounter();
+        googleMap();
+        /* flatPrice();*/  
+        flatFilterBox(); 
+        flatShopSearch();
+        topSearch();
+        flexProduct(); 
+        quantityNumber(); 
+        flatTabs();
+        flatImagePopup();
+        flatVideoPopup(); 
+        flatEffectDir();
+        flatIsotope();
+        flatCarouselOwl();
+        flatContentBox();
+        updateCartProducts();
    	});
 })(jQuery);
+
+
+function updateCartProducts() {
+    var cartProducts;
+    var existingCookieData = $.cookie('cartProducts');
+
+    if (existingCookieData != undefined && existingCookieData != "" && existingCookieData != null) {
+        cartProducts = existingCookieData.split(',');
+    }
+    else {
+        cartProducts = [];
+    }
+
+    $("#cart-count").html(cartProducts.length);
+};
